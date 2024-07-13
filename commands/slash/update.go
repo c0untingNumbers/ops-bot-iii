@@ -23,6 +23,12 @@ func Update() (*discordgo.ApplicationCommand, func(s *discordgo.Session, i *disc
 					Type:        discordgo.ApplicationCommandOptionBoolean,
 					Required:    false,
 				},
+				{
+					Name:        "branch",
+					Description: "Switch to the remote branch",
+					Type:        discordgo.ApplicationCommandOptionString,
+					Required:    false,
+				},
 			},
 		},
 		func(s *discordgo.Session, i *discordgo.InteractionCreate) {
@@ -32,17 +38,33 @@ func Update() (*discordgo.ApplicationCommand, func(s *discordgo.Session, i *disc
 			)
 			defer span.Finish()
 
-			logging.Debug(s, "Update command received", i.Member.User, span)
-
 			force := false
+			branch := "main"
 			if len(i.ApplicationCommandData().Options) != 0 {
 				force = i.ApplicationCommandData().Options[0].BoolValue()
+				branch = i.ApplicationCommandData().Options[1].StringValue()
 			}
 
-			update, err := helpers.UpdateMainBranch()
-			if err != nil {
-				logging.Error(s, "Error updating main branch", i.Member.User, span, logrus.Fields{"err": err.Error()})
-				return
+			debugMessage := fmt.Sprintf("Update command received with options: force=%v, branch=%s", force, branch)
+			//TODO Change it to Debug
+			logging.Info(s, debugMessage, i.Member.User, span)
+
+			var update bool
+			var err error
+
+			if branch == "main" {
+				update, err = helpers.UpdateMainBranch()
+				if err != nil {
+					logging.Error(s, "Error updating main branch", i.Member.User, span, logrus.Fields{"err": err.Error()})
+					return
+				}
+			} else {
+				// TODO REMOVE THE EXTRA PARAMETERS
+				update, err = helpers.UpdateRemoteBranch(branch, span, s, i)
+				if err != nil {
+					logging.Error(s, "Error updating remote branch", i.Member.User, span, logrus.Fields{"err": err.Error()})
+					return
+				}
 			}
 
 			if !update {
