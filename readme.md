@@ -13,35 +13,7 @@ asdasd
 OBIII shares many of the same goals as OBII:
 
 - Modularity
-- Meaningful Documentation
-- Open Source Community and Contributions
-
-We want OBIII to grow as the needs of its users do. We strive to make it a project that is not only easy to contribute to but also one that people want to contribute to!
-
-### License
-
-OBIII is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-
-## Running OBIII for the First Time
-
-### Set up `config.yml`
-
-Make a copy of [config_example.yml](./config_example.yml) and name it `config.yml`:
-
-```
-cp config_example.yml config.yml
-```
-asdasd
-### Discord Bot Token, Application ID, and Guild ID
-
-Instructions for setting up a general bot can be found everywhere, so we won't rehash it here. You can refer to the [Discord.py documentation](https://discordpy.readthedocs.io/en/stable/discord.html) for guidance.
-
-1. Add the token of the bot to `config.yml` under `token`.
-2. Add the application ID of the bot to `config.yml` under `app_id`.
-3. Add the guild ID (ID of your server) to `config.yml` under `guild_id`.
-
-### Logging Fields
-
+- Meaningful Documentationsos stupid
 You need to add the IDs of the channels where you want the bot to log.
 
 1. Add the channel IDs to `config.yml` under `logging.[level]_channel` respectively.
