@@ -9,7 +9,7 @@ OBIII is the third iteration of Ops Bot. You can find the previous version, Ops 
 OBIII is a Discord bot specifically built for RITSEC and its Discord server. As such, much of the code is purpose-built for RITSEC. If you plan to implement OBIII outside of RITSEC, significant code refactoring may be required.
 
 ### Goals
-
+asdasd
 OBIII shares many of the same goals as OBII:
 
 - Modularity
