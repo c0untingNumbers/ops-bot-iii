@@ -31,7 +31,7 @@ Make a copy of [config_example.yml](./config_example.yml) and name it `config.ym
 ```
 cp config_example.yml config.yml
 ```
-
+asdasd
 ### Discord Bot Token, Application ID, and Guild ID
 
 Instructions for setting up a general bot can be found everywhere, so we won't rehash it here. You can refer to the [Discord.py documentation](https://discordpy.readthedocs.io/en/stable/discord.html) for guidance.
